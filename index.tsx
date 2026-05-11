@@ -94,6 +94,8 @@ const patchUserContextMenu: NavContextMenuPatchCallback = (children, { user }: {
         // only include guilds we can actually SEE mod view in -- presumably should integrate fine with showHiddenThings?
         .filter(guild => GuildChannelStore.hasElevatedPermissions(guild.id));
 
+    if (mutualGuildsWithPerms.length === 0) return;
+
     targetGroup.splice(targetIndex, 0, buildContextMenuItem(user, mutualGuildsWithPerms));
 };
 
